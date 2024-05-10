@@ -7,7 +7,7 @@ from tkinter import *
 from tkinter import ttk
 
 # Define a key
-GOOGLE_API_KEY="AIzaSyD-RBOn1Gu7BcARyIqDdaGjqO_uBb1_rL8"
+GOOGLE_API_KEY="YOUR_API_KEY"
 genai.configure(api_key=GOOGLE_API_KEY)
 
 generation_config = {
