@@ -3,6 +3,8 @@ import google.generativeai as genai
 import urllib.request
 
 from tkinter import filedialog
+from tkinter import *
+from tkinter import ttk
 
 # Define a key
 GOOGLE_API_KEY="AIzaSyD-RBOn1Gu7BcARyIqDdaGjqO_uBb1_rL8"
@@ -46,7 +48,7 @@ def selecionar_arquivo():
   caminho_arquivo = filedialog.askopenfilename(
     initialdir=".", 
     title="Selecione um arquivo",
-    filetypes=( ("Arquivos de texto", "*.jpg *.jpeg") , ("Todos os arquivos", "*.*"))
+    filetypes=[("Arquivos de texto", "*.jpg *.jpeg *.png")]
   )
   if caminho_arquivo:
     # Cria um modelo para a IA
@@ -68,17 +70,24 @@ def selecionar_arquivo():
 
     response = model.generate_content(prompt_parts)
     print(response.text)
+
+    ttk.Label(frm, text=response.text).grid(column=0, row=3)
     
   else:
     print("Nenhum arquivo selecionado.")
+    
+    ttk.Label(frm, text="Nenhum arquivo selecionado.").grid(column=0, row=3)
 
 # Cria a janela principal
 janela = tk.Tk()
 janela.title("Selecionador de Arquivos")
 
-# Cria um botão para abrir o seletor de arquivos
-botao = tk.Button(janela, text="Selecionar arquivo", command=selecionar_arquivo)
-botao.pack()
+frm = ttk.Frame(janela, padding=20)
+frm.grid()
+ttk.Label(frm, text="Primeira tela em Python *.* ").grid(column=0, row=0)
+ttk.Label(frm, text="Esse programa serve para analisar a placa do veiculo").grid(column=0, row=1)
+ttk.Button(frm, text="Escolha a foto do veiculo", command=selecionar_arquivo).grid(column=5, row=5)
+
 
 # Inicia o loop principal da janela
 janela.mainloop()
